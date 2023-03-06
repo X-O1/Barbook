@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build-A-Bar</title>
+
+    <link rel="stylesheet" href="mobile.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Climate+Crisis&family=Pacifico&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <section id="mainContainer">
+        <div class="rolodex-container">
+
+            <nav class="navigation-container" id="navigationContainer">
+                <div class="tools-tab menu-tab " id="toolsTab">
+                    <div class="tools-tab-link menu-tab-link" id="tools-tab-link">
+                        <p>Tools</p>
+                    </div>
+                </div>
+                <div class="build-tab menu-tab" id="buildTab">
+                    <div class="build-tab-link menu-tab-link" id="buildTabLink">
+                        <p>Build</p>
+                    </div>
+                    <div class="build-cocktail-link link" id="buildCocktailLink">
+                        <p>Cocktail</p>
+                    </div>
+                    <div class="build-menu-link link" id="buildMenuLink">
+                        <p>Menu</p>
+                    </div>
+                </div>
+                <div class="rolodex-tab menu-tab" id="rolodexTab">
+                    <div class="rolodex-tab-link menu-tab-link" id="rolodex-tab-link">
+                        <p>Rolodex</p>
+                    </div>
+                </div>
+            </nav>
+
+            <div id="homePage" class="home-page">
+                <h1 class="site-name">Build-A-Bar</h1>
+                <div class="surprise-me-container" id="surpriseMeContainer">
+                    <h2 class="random-drink" id="randomDrink"></h2>
+                    <button class="surprise-me-button" id="surpriseMeButton">Surprise Me!</button>
+                </div>
+            </div>
+
+            <div class="drink-card" id="drinkCard">
+                <button type="submit" class="done" id="done">Done</button>
+                <button class="delete-close-button" id="deleteCloseButton">X</button>
+                <button type="button" class="edit" id="edit">Edit</button>
+                <button type="button" class="add" id="add">+</button>
+
+                <h2 class="drink-title" id="drinkTitle">
+                    <input type="text" placeholder="Enter Name" disabled>
+                </h2>
+                <ul class="drink-ingredients" id="drinkIngredients">
+                    <li><input id="drinkIngredientsInput" type="text" placeholder="Ingredient" disabled></li>
+                </ul>
+                <div class="ingredient-button-container">
+                    <button id="deleteIngredientButton">-</button>
+                    <button id="addIngredientButton">+</button>
+                </div>
+                <p class="drink-description" id="drinkDescription">
+                    <textarea id="drinkDescriptionInput" rows="10" cols="42" placeholder="Notes/How to make"
+                        disabled></textarea>
+                </p>
+                <button type="button" class="add-fav-button" id="addFavButton">Add Favorite</button>
+                <button type="button" class="delete-fav-button" id="deleteFavButton">Delete Favorite</button>
+                <button class="delete-button" id="deleteButton">Delete Drink</button>
+            </div>
+
+            <div class="index-list" id="indexList">
+                <button type="button" class="index-list-add" id="indexListAdd">+</button>
+                <h5 class="index-list-title">Cocktails</h5>
+                <ul class="index-labels" id="indexLabels"></ul>
+
+            </div>
+
+            <div class="index-cards">
+                <div class="close-build-menu" id="closeBuildMenu">Close</div>
+                <div class="close-rolodex-menu" id="closeRolodexMenu">Close</div>
+                <div class="all-index" id="allIndex">All</div>
+                <div class="fav-index index-card" id="favIndex">*</div>
+                <div class="a-index index-card" id="aIndex">a</div>
+                <div class="b-index index-card" id="bIndex">b</div>
+                <div class="c-index index-card" id="cIndex">c</div>
+                <div class="d-index index-card" id="dIndex">d</div>
+                <div class="e-index index-card" id="eIndex">e</div>
+                <div class="f-index index-card" id="fIndex">f</div>
+                <div class="g-index index-card" id="gIndex">g</div>
+                <div class="h-index index-card" id="hIndex">h</div>
+                <div class="i-index index-card" id="iIndex">i</div>
+                <div class="j-index index-card" id="jIndex">j</div>
+                <div class="k-index index-card" id="kIndex">k</div>
+                <div class="l-index index-card" id="lIndex">l</div>
+                <div class="m-index index-card" id="mIndex">m</div>
+                <div class="n-index index-card" id="nIndex">n</div>
+                <div class="o-index index-card" id="oIndex">o</div>
+                <div class="p-index index-card" id="pIndex">p</div>
+                <div class="q-index index-card" id="qIndex">q</div>
+                <div class="r-index index-card" id="rIndex">r</div>
+                <div class="s-index index-card" id="sIndex">s</div>
+                <div class="t-index index-card" id="tIndex">t</div>
+                <div class="u-index index-card" id="uIndex">u</div>
+                <div class="v-index index-card" id="vIndex">v</div>
+                <div class="w-index index-card" id="wIndex">w</div>
+                <div class="x-index index-card" id="xIndex">x</div>
+                <div class="y-index index-card" id="yIndex">y</div>
+                <div class="z-index index-card" id="zIndex">z</div>
+
+                <h4 class="rolodex-title">Home</h4>
+            </div>
+        </div>
+
+
+
+    </section>
+
+
+</body>
+
+</html>
