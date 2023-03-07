@@ -63,7 +63,7 @@ const xIndex = document.getElementById("xIndex");
 const yIndex = document.getElementById("yIndex");
 const zIndex = document.getElementById("zIndex");
 const favIndex = document.getElementById("favIndex");
-//ROLODEX INDEX CARDS
+//INDEX CARDS
 let indexA = [];
 let indexB = [];
 let indexC = [];
