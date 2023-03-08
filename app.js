@@ -395,6 +395,40 @@ const sortCoctails = () => {
     }
   });
 };
+//CLEARS FORM TO CREATE NEW DRINK
+const createDrinkDisplay = () => {
+  ingredient1.style.display = "list-item";
+  ingredient2.style.display = "list-item";
+  ingredient3.style.display = "list-item";
+  ingredient4.style.display = "list-item";
+  ingredient5.style.display = "list-item";
+  ingredient6.style.display = "list-item";
+  ingredient7.style.display = "list-item";
+  ingredient8.style.display = "list-item";
+
+  title.value = "";
+  ingredient1Input.value = "";
+  ingredient2Input.value = "";
+  ingredient3Input.value = "";
+  ingredient4Input.value = "";
+  ingredient5Input.value = "";
+  ingredient6Input.value = "";
+  ingredient7Input.value = "";
+  ingredient8Input.value = "";
+  description.value = "";
+
+  title.disabled = false;
+  ingredient1Input.disabled = false;
+  ingredient2Input.disabled = false;
+  ingredient3Input.disabled = false;
+  ingredient4Input.disabled = false;
+  ingredient5Input.disabled = false;
+  ingredient6Input.disabled = false;
+  ingredient7Input.disabled = false;
+  ingredient8Input.disabled = false;
+  description.disabled = false;
+};
+
 //BUTTON EVENT LISTENERS
 edit.addEventListener("click", () => {
   add.style.display = "none";
@@ -515,36 +549,7 @@ add.addEventListener("click", () => {
     card.style.transform = "translateX(-50%)";
   });
 
-  ingredient1.style.display = "list-item";
-  ingredient2.style.display = "list-item";
-  ingredient3.style.display = "list-item";
-  ingredient4.style.display = "list-item";
-  ingredient5.style.display = "list-item";
-  ingredient6.style.display = "list-item";
-  ingredient7.style.display = "list-item";
-  ingredient8.style.display = "list-item";
-
-  title.value = "";
-  ingredient1Input.value = "";
-  ingredient2Input.value = "";
-  ingredient3Input.value = "";
-  ingredient4Input.value = "";
-  ingredient5Input.value = "";
-  ingredient6Input.value = "";
-  ingredient7Input.value = "";
-  ingredient8Input.value = "";
-  description.value = "";
-
-  title.disabled = false;
-  ingredient1Input.disabled = false;
-  ingredient2Input.disabled = false;
-  ingredient3Input.disabled = false;
-  ingredient4Input.disabled = false;
-  ingredient5Input.disabled = false;
-  ingredient6Input.disabled = false;
-  ingredient7Input.disabled = false;
-  ingredient8Input.disabled = false;
-  description.disabled = false;
+  createDrinkDisplay();
 });
 deleteButton.addEventListener("click", () => {
   // This deletes whatever drink you're viewing
@@ -607,36 +612,7 @@ indexListAddButton.addEventListener("click", () => {
   closeRolodexMenu.style.transform = "translateY(200%)";
   allIndex.style.transform = "translateY(100%)";
 
-  ingredient1.style.display = "list-item";
-  ingredient2.style.display = "list-item";
-  ingredient3.style.display = "list-item";
-  ingredient4.style.display = "list-item";
-  ingredient5.style.display = "list-item";
-  ingredient6.style.display = "list-item";
-  ingredient7.style.display = "list-item";
-  ingredient8.style.display = "list-item";
-
-  title.value = "";
-  ingredient1Input.value = "";
-  ingredient2Input.value = "";
-  ingredient3Input.value = "";
-  ingredient4Input.value = "";
-  ingredient5Input.value = "";
-  ingredient6Input.value = "";
-  ingredient7Input.value = "";
-  ingredient8Input.value = "";
-  description.value = "";
-
-  title.disabled = false;
-  ingredient1Input.disabled = false;
-  ingredient2Input.disabled = false;
-  ingredient3Input.disabled = false;
-  ingredient4Input.disabled = false;
-  ingredient5Input.disabled = false;
-  ingredient6Input.disabled = false;
-  ingredient7Input.disabled = false;
-  ingredient8Input.disabled = false;
-  description.disabled = false;
+  createDrinkDisplay();
 });
 addFavButton.addEventListener("click", () => {
   for (let i = 0; i < allCocktails.length; i++) {
@@ -690,36 +666,7 @@ buildCocktailLink.addEventListener("click", () => {
     card.style.transform = "translateX(-50%)";
   });
 
-  ingredient1.style.display = "list-item";
-  ingredient2.style.display = "list-item";
-  ingredient3.style.display = "list-item";
-  ingredient4.style.display = "list-item";
-  ingredient5.style.display = "list-item";
-  ingredient6.style.display = "list-item";
-  ingredient7.style.display = "list-item";
-  ingredient8.style.display = "list-item";
-
-  title.value = "";
-  ingredient1Input.value = "";
-  ingredient2Input.value = "";
-  ingredient3Input.value = "";
-  ingredient4Input.value = "";
-  ingredient5Input.value = "";
-  ingredient6Input.value = "";
-  ingredient7Input.value = "";
-  ingredient8Input.value = "";
-  description.value = "";
-
-  title.disabled = false;
-  ingredient1Input.disabled = false;
-  ingredient2Input.disabled = false;
-  ingredient3Input.disabled = false;
-  ingredient4Input.disabled = false;
-  ingredient5Input.disabled = false;
-  ingredient6Input.disabled = false;
-  ingredient7Input.disabled = false;
-  ingredient8Input.disabled = false;
-  description.disabled = false;
+  createDrinkDisplay();
 });
 
 //LETTER INDEX EVENT LISTENERS
