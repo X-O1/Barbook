@@ -163,6 +163,7 @@ buildTab.addEventListener("click", () => {
   rolodexTitle.innerHTML = "Build";
   randomDrink.style.display = "none";
   surpriseMeContainer.style.margin = "auto auto -30px auto";
+  surpriseMeButton.style.display = "none";
 });
 closeBuildMenu.addEventListener("click", () => {
   buildTabLinks.forEach((link) => {
@@ -178,6 +179,7 @@ closeBuildMenu.addEventListener("click", () => {
   rolodexTitle.innerHTML = "Home";
   randomDrink.style.display = "none";
   surpriseMeContainer.style.margin = "auto auto -30px auto";
+  surpriseMeButton.style.display = "flex";
 });
 closeRolodexMenu.addEventListener("click", () => {
   indexCard.forEach((card) => {

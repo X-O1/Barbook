@@ -42,7 +42,7 @@ a {
 
 /* NAVIGATION */
 #navigationContainer {
-    height: 310px;
+    height: 230px;
     display: flex;
     flex-direction: column;
     width: 500px;
@@ -53,8 +53,6 @@ a {
     position: absolute;
     bottom: 0;
     right: -10px;
-
-
 }
 
 .menu-tab {
@@ -97,6 +95,7 @@ a {
     height: 85px;
     transform: translateX(0);
     transition: transform .3s ease-in-out;
+    display: none;
 }
 
 .rolodex-tab {
@@ -138,6 +137,7 @@ a {
     bottom: 10px;
     height: 80px;
 }
+
 
 .close-rolodex-menu {
     border: .1px ridge #F0F8FF;
