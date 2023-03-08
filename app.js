@@ -1,10 +1,26 @@
 //FRONT-END ELEMENTS
-const ingredientButtonContainer = document.querySelector(
-  ".ingredient-button-container"
-);
 const title = document.querySelector(".drink-title input");
 const ingredientsContainer = document.querySelector(".drink-ingredients");
-const ingredients = document.querySelector(".drink-ingredients input");
+const ingredientsList = document.querySelectorAll(".drink-ingredients li");
+const ingredientsListInput = document.querySelectorAll(
+  ".drink-ingredients li input"
+);
+const ingredient1 = document.querySelector(".ingredient-1");
+const ingredient2 = document.querySelector(".ingredient-2");
+const ingredient3 = document.querySelector(".ingredient-3");
+const ingredient4 = document.querySelector(".ingredient-4");
+const ingredient5 = document.querySelector(".ingredient-5");
+const ingredient6 = document.querySelector(".ingredient-6");
+const ingredient7 = document.querySelector(".ingredient-7");
+const ingredient8 = document.querySelector(".ingredient-8");
+const ingredient1Input = document.querySelector(".ingredient-1 input");
+const ingredient2Input = document.querySelector(".ingredient-2 input");
+const ingredient3Input = document.querySelector(".ingredient-3 input");
+const ingredient4Input = document.querySelector(".ingredient-4 input");
+const ingredient5Input = document.querySelector(".ingredient-5 input");
+const ingredient6Input = document.querySelector(".ingredient-6 input");
+const ingredient7Input = document.querySelector(".ingredient-7 input");
+const ingredient8Input = document.querySelector(".ingredient-8 input");
 const description = document.querySelector(".drink-description textarea");
 const done = document.getElementById("done");
 const edit = document.getElementById("edit");
@@ -120,6 +136,7 @@ const allLetterIndex = [
   indexY,
   indexZ,
 ];
+
 //LOCAL STORAGE
 const allCocktails = JSON.parse(localStorage.getItem("cocktails")) || [];
 // NAVIGATION
@@ -185,7 +202,6 @@ randomDrink.addEventListener("click", () => {
   allCocktails.forEach((drink) => {
     if (randomDrink.innerHTML === drink.title && drink.favorite === false) {
       title.value = drink.title;
-      ingredients.value = drink.ingredients;
       description.value = drink.description;
       addFavButton.style.display = "block";
       deleteFavButton.style.display = "none";
@@ -194,7 +210,6 @@ randomDrink.addEventListener("click", () => {
       drink.favorite === true
     ) {
       title.value = drink.title;
-      ingredients.value = drink.ingredients;
       description.value = drink.description;
       addFavButton.style.display = "none";
       deleteFavButton.style.display = "block";
@@ -209,15 +224,22 @@ randomDrink.addEventListener("click", () => {
     card.style.transform = "translateX(0)";
   });
 });
-//CREATE A COCTAIL
+//CREATE A COCKTAIL
 const addCocktail = () => {
   const cocktail = {
     title: document.querySelector(".drink-title input").value,
-    ingredients: document.querySelector(".drink-ingredients input").value,
+    ingredient1: document.querySelector(".ingredient-1 input").value,
+    ingredient2: document.querySelector(".ingredient-2 input").value,
+    ingredient3: document.querySelector(".ingredient-3 input").value,
+    ingredient4: document.querySelector(".ingredient-4 input").value,
+    ingredient5: document.querySelector(".ingredient-5 input").value,
+    ingredient6: document.querySelector(".ingredient-6 input").value,
+    ingredient7: document.querySelector(".ingredient-7 input").value,
+    ingredient8: document.querySelector(".ingredient-8 input").value,
     description: document.querySelector(".drink-description textarea").value,
     favorite: false,
   };
-  if (title.value != "" || ingredients.value != "" || description.value != "") {
+  if (title.value != "" || description.value != "") {
     allCocktails.push(cocktail);
     localStorage.setItem("cocktails", JSON.stringify(allCocktails));
   }
@@ -380,7 +402,6 @@ edit.addEventListener("click", () => {
   addFavButton.style.display = "none";
   deleteFavButton.style.display = "none";
   done.style.display = "block";
-  ingredientButtonContainer.style.display = "block";
   deleteButton.style.display = "block";
   deleteButton.style.display = "none";
   indexCard.forEach((card) => {
@@ -390,8 +411,24 @@ edit.addEventListener("click", () => {
   allIndex.style.transform = "translateY(100%)";
 
   title.disabled = false;
-  ingredients.disabled = false;
+  ingredient1Input.disabled = false;
+  ingredient2Input.disabled = false;
+  ingredient3Input.disabled = false;
+  ingredient4Input.disabled = false;
+  ingredient5Input.disabled = false;
+  ingredient6Input.disabled = false;
+  ingredient7Input.disabled = false;
+  ingredient8Input.disabled = false;
   description.disabled = false;
+
+  ingredient1.style.display = "list-item";
+  ingredient2.style.display = "list-item";
+  ingredient3.style.display = "list-item";
+  ingredient4.style.display = "list-item";
+  ingredient5.style.display = "list-item";
+  ingredient6.style.display = "list-item";
+  ingredient7.style.display = "list-item";
+  ingredient8.style.display = "list-item";
 
   for (let i = 0; i < allCocktails.length; i++) {
     if (title.value === allCocktails[i].title) {
@@ -409,7 +446,6 @@ edit.addEventListener("click", () => {
 done.addEventListener("click", () => {
   addCocktail();
 
-  ingredientButtonContainer.style.display = "none";
   done.style.display = "none";
   deleteButton.style.display = "block";
   edit.style.display = "block";
@@ -424,13 +460,44 @@ done.addEventListener("click", () => {
   });
 
   title.disabled = true;
-  ingredients.disabled = true;
+  ingredient1Input.disabled = true;
+  ingredient2Input.disabled = true;
+  ingredient3Input.disabled = true;
+  ingredient4Input.disabled = true;
+  ingredient5Input.disabled = true;
+  ingredient6Input.disabled = true;
+  ingredient7Input.disabled = true;
+  ingredient8Input.disabled = true;
   description.disabled = true;
 
-  //Keeps values of last object on display
-  title.value = allCocktails[allCocktails.length - 1].title;
-  ingredients.value = allCocktails[allCocktails.length - 1].ingredients;
-  description.value = allCocktails[allCocktails.length - 1].description;
+  allCocktails.forEach((drink) => {
+    if (title.value === drink.title) {
+      drink.ingredient1 === ""
+        ? (ingredient1.style.display = "none")
+        : (ingredient1.style.display = "list-item");
+      drink.ingredient2 === ""
+        ? (ingredient2.style.display = "none")
+        : (ingredient2.style.display = "list-item");
+      drink.ingredient3 === ""
+        ? (ingredient3.style.display = "none")
+        : (ingredient3.style.display = "list-item");
+      drink.ingredient4 === ""
+        ? (ingredient4.style.display = "none")
+        : (ingredient4.style.display = "list-item");
+      drink.ingredient5 === ""
+        ? (ingredient5.style.display = "none")
+        : (ingredient5.style.display = "list-item");
+      drink.ingredient6 === ""
+        ? (ingredient6.style.display = "none")
+        : (ingredient6.style.display = "list-item");
+      drink.ingredient7 === ""
+        ? (ingredient7.style.display = "none")
+        : (ingredient7.style.display = "list-item");
+      drink.ingredient8 === ""
+        ? (ingredient8.style.display = "none")
+        : (ingredient8.style.display = "list-item");
+    }
+  });
 });
 add.addEventListener("click", () => {
   add.style.display = "none";
@@ -439,8 +506,6 @@ add.addEventListener("click", () => {
   deleteFavButton.style.display = "none";
   deleteButton.style.display = "none";
   done.style.display = "block";
-  ingredientButtonContainer.style.display = "";
-  ingredientsContainer.style.display = "";
   description.style.display = "";
   deleteCloseButton.style.display = "none";
   edit.style.display = "none";
@@ -450,12 +515,35 @@ add.addEventListener("click", () => {
     card.style.transform = "translateX(-50%)";
   });
 
+  ingredient1.style.display = "list-item";
+  ingredient2.style.display = "list-item";
+  ingredient3.style.display = "list-item";
+  ingredient4.style.display = "list-item";
+  ingredient5.style.display = "list-item";
+  ingredient6.style.display = "list-item";
+  ingredient7.style.display = "list-item";
+  ingredient8.style.display = "list-item";
+
   title.value = "";
-  ingredients.value = "";
+  ingredient1Input.value = "";
+  ingredient2Input.value = "";
+  ingredient3Input.value = "";
+  ingredient4Input.value = "";
+  ingredient5Input.value = "";
+  ingredient6Input.value = "";
+  ingredient7Input.value = "";
+  ingredient8Input.value = "";
   description.value = "";
 
   title.disabled = false;
-  ingredients.disabled = false;
+  ingredient1Input.disabled = false;
+  ingredient2Input.disabled = false;
+  ingredient3Input.disabled = false;
+  ingredient4Input.disabled = false;
+  ingredient5Input.disabled = false;
+  ingredient6Input.disabled = false;
+  ingredient7Input.disabled = false;
+  ingredient8Input.disabled = false;
   description.disabled = false;
 });
 deleteButton.addEventListener("click", () => {
@@ -485,7 +573,6 @@ deleteButton.addEventListener("click", () => {
   add.style.display = "block";
   deleteButton.style.display = "none";
   done.style.display = "none";
-  ingredientButtonContainer.style.display = "none";
   ingredientsContainer.style.display = "none";
   description.style.display = "none";
   title.value = "DELETED";
@@ -493,7 +580,6 @@ deleteButton.addEventListener("click", () => {
   deleteFavButton.style.display = "none";
 
   title.disabled = true;
-  ingredients.disabled = true;
   description.disabled = true;
 });
 deleteCloseButton.addEventListener("click", () => {
@@ -510,7 +596,6 @@ indexListAddButton.addEventListener("click", () => {
   edit.style.display = "none";
   drinkCard.style.display = "flex";
   done.style.display = "block";
-  ingredientButtonContainer.style.display = "";
   ingredientsContainer.style.display = "";
   description.style.display = "";
   deleteCloseButton.style.display = "none";
@@ -522,12 +607,35 @@ indexListAddButton.addEventListener("click", () => {
   closeRolodexMenu.style.transform = "translateY(200%)";
   allIndex.style.transform = "translateY(100%)";
 
+  ingredient1.style.display = "list-item";
+  ingredient2.style.display = "list-item";
+  ingredient3.style.display = "list-item";
+  ingredient4.style.display = "list-item";
+  ingredient5.style.display = "list-item";
+  ingredient6.style.display = "list-item";
+  ingredient7.style.display = "list-item";
+  ingredient8.style.display = "list-item";
+
   title.value = "";
-  ingredients.value = "";
+  ingredient1Input.value = "";
+  ingredient2Input.value = "";
+  ingredient3Input.value = "";
+  ingredient4Input.value = "";
+  ingredient5Input.value = "";
+  ingredient6Input.value = "";
+  ingredient7Input.value = "";
+  ingredient8Input.value = "";
   description.value = "";
 
   title.disabled = false;
-  ingredients.disabled = false;
+  ingredient1Input.disabled = false;
+  ingredient2Input.disabled = false;
+  ingredient3Input.disabled = false;
+  ingredient4Input.disabled = false;
+  ingredient5Input.disabled = false;
+  ingredient6Input.disabled = false;
+  ingredient7Input.disabled = false;
+  ingredient8Input.disabled = false;
   description.disabled = false;
 });
 addFavButton.addEventListener("click", () => {
@@ -558,19 +666,6 @@ deleteFavButton.addEventListener("click", () => {
   deleteFavButton.style.display = "none";
   addFavButton.style.display = "block";
 });
-//NEW INGREDIENT BUTTONS
-// addIngredientButton.addEventListener("click", () => {
-//   const drinkIngredientsList = document.createElement("li");
-//   ingredientsContainer.appendChild(drinkIngredientsList);
-//   const drinkIngredientsInput = document.createElement("input");
-//   drinkIngredientsInput.setAttribute("id", "drinkIngredientsInput");
-//   drinkIngredientsInput.type = "text";
-//   drinkIngredientsInput.placeholder = "Enter Ingredient";
-//   drinkIngredientsList.appendChild(drinkIngredientsInput);
-// });
-// deleteIngredientButton.addEventListener("click", () => {
-//   ingredientsContainer.removeChild(ingredientsContainer.lastChild);
-// });
 //MENU LINKS
 buildCocktailLink.addEventListener("click", () => {
   rolodexTitle.innerHTML = "Build Cocktail";
@@ -583,7 +678,6 @@ buildCocktailLink.addEventListener("click", () => {
   deleteFavButton.style.display = "none";
   deleteButton.style.display = "none";
   done.style.display = "block";
-  ingredientButtonContainer.style.display = "";
   ingredientsContainer.style.display = "";
   description.style.display = "";
   deleteCloseButton.style.display = "none";
@@ -596,15 +690,115 @@ buildCocktailLink.addEventListener("click", () => {
     card.style.transform = "translateX(-50%)";
   });
 
+  ingredient1.style.display = "list-item";
+  ingredient2.style.display = "list-item";
+  ingredient3.style.display = "list-item";
+  ingredient4.style.display = "list-item";
+  ingredient5.style.display = "list-item";
+  ingredient6.style.display = "list-item";
+  ingredient7.style.display = "list-item";
+  ingredient8.style.display = "list-item";
+
   title.value = "";
-  ingredients.value = "";
+  ingredient1Input.value = "";
+  ingredient2Input.value = "";
+  ingredient3Input.value = "";
+  ingredient4Input.value = "";
+  ingredient5Input.value = "";
+  ingredient6Input.value = "";
+  ingredient7Input.value = "";
+  ingredient8Input.value = "";
   description.value = "";
 
   title.disabled = false;
-  ingredients.disabled = false;
+  ingredient1Input.disabled = false;
+  ingredient2Input.disabled = false;
+  ingredient3Input.disabled = false;
+  ingredient4Input.disabled = false;
+  ingredient5Input.disabled = false;
+  ingredient6Input.disabled = false;
+  ingredient7Input.disabled = false;
+  ingredient8Input.disabled = false;
   description.disabled = false;
 });
+
 //LETTER INDEX EVENT LISTENERS
+
+const displayDrinkInfo = () => {
+  const indexLabelsList = document.querySelectorAll(".index-labels li");
+  indexLabelsList.forEach((label) => {
+    label.addEventListener("click", () => {
+      homePage.style.display = "none";
+      indexList.style.display = "none";
+      drinkCard.style.display = "flex";
+      ingredientsContainer.style.display = "";
+      description.style.display = "";
+      deleteCloseButton.style.display = "none";
+      edit.style.display = "block";
+      deleteButton.style.display = "block";
+
+      allCocktails.forEach((index) => {
+        if (label.innerText === index.title && index.favorite === false) {
+          title.value = index.title;
+          ingredient1Input.value = index.ingredient1;
+          ingredient2Input.value = index.ingredient2;
+          ingredient3Input.value = index.ingredient3;
+          ingredient4Input.value = index.ingredient4;
+          ingredient5Input.value = index.ingredient5;
+          ingredient6Input.value = index.ingredient6;
+          ingredient7Input.value = index.ingredient7;
+          ingredient8Input.value = index.ingredient8;
+          description.value = index.description;
+          addFavButton.style.display = "block";
+          deleteFavButton.style.display = "none";
+        } else if (label.innerText === index.title && index.favorite === true) {
+          title.value = index.title;
+          ingredient1Input.value = index.ingredient1;
+          ingredient2Input.value = index.ingredient2;
+          ingredient3Input.value = index.ingredient3;
+          ingredient4Input.value = index.ingredient4;
+          ingredient5Input.value = index.ingredient5;
+          ingredient6Input.value = index.ingredient6;
+          ingredient7Input.value = index.ingredient7;
+          ingredient8Input.value = index.ingredient8;
+          description.value = index.description;
+          addFavButton.style.display = "none";
+          deleteFavButton.style.display = "block";
+        }
+
+        allCocktails.forEach((drink) => {
+          if (title.value === drink.title) {
+            drink.ingredient1 === ""
+              ? (ingredient1.style.display = "none")
+              : (ingredient1.style.display = "list-item");
+            drink.ingredient2 === ""
+              ? (ingredient2.style.display = "none")
+              : (ingredient2.style.display = "list-item");
+            drink.ingredient3 === ""
+              ? (ingredient3.style.display = "none")
+              : (ingredient3.style.display = "list-item");
+            drink.ingredient4 === ""
+              ? (ingredient4.style.display = "none")
+              : (ingredient4.style.display = "list-item");
+            drink.ingredient5 === ""
+              ? (ingredient5.style.display = "none")
+              : (ingredient5.style.display = "list-item");
+            drink.ingredient6 === ""
+              ? (ingredient6.style.display = "none")
+              : (ingredient6.style.display = "list-item");
+            drink.ingredient7 === ""
+              ? (ingredient7.style.display = "none")
+              : (ingredient7.style.display = "list-item");
+            drink.ingredient8 === ""
+              ? (ingredient8.style.display = "none")
+              : (ingredient8.style.display = "list-item");
+          }
+        });
+      });
+    });
+  });
+};
+
 rolodexTab.addEventListener("click", () => {
   indexLabels.innerHTML = "";
   indexListTitle.innerHTML = "All Cocktails";
@@ -615,39 +809,8 @@ rolodexTab.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
-
 indexCard.forEach((label) => {
   label.addEventListener("click", () => {
     sortCoctails();
@@ -658,11 +821,9 @@ indexCard.forEach((label) => {
     indexListAddButton.style.display = "block";
   });
 });
-
 favIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
   indexListTitle.innerHTML = "Favorites";
-
   indexFav.forEach((label) => {
     if (label.favorite === true) {
       const drinkLabel = document.createElement("li");
@@ -670,73 +831,20 @@ favIndex.addEventListener("click", () => {
       drinkLabel.innerText = label.title;
     }
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      indexList.style.display = "none";
-      homePage.style.display = "none";
-      drinkCard.style.display = "flex";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 allIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
   indexListTitle.innerHTML = "All Cocktails";
   homePage.style.display = "none";
   indexList.style.display = "block";
+  drinkCard.style.display = "none";
   allCocktails.forEach((label) => {
     const drinkLabel = document.createElement("li");
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 aIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -745,37 +853,7 @@ aIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 bIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -784,36 +862,7 @@ bIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 cIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -822,36 +871,7 @@ cIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 dIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -860,36 +880,7 @@ dIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 eIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -898,36 +889,7 @@ eIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 fIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -936,36 +898,7 @@ fIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 gIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -974,36 +907,7 @@ gIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 hIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1012,36 +916,7 @@ hIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 iIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1050,36 +925,7 @@ iIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 jIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1088,36 +934,7 @@ jIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 kIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1126,36 +943,7 @@ kIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 lIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1164,36 +952,7 @@ lIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 mIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1202,36 +961,7 @@ mIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 nIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1240,36 +970,7 @@ nIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 oIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1278,36 +979,7 @@ oIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 pIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1316,36 +988,7 @@ pIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 qIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1354,36 +997,7 @@ qIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 rIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1392,36 +1006,7 @@ rIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 sIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1430,36 +1015,7 @@ sIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 tIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1468,36 +1024,7 @@ tIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 uIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1506,36 +1033,7 @@ uIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 vIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1544,36 +1042,7 @@ vIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 wIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1582,36 +1051,7 @@ wIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 xIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1620,36 +1060,7 @@ xIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 yIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1658,36 +1069,7 @@ yIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });
 zIndex.addEventListener("click", () => {
   indexLabels.innerHTML = "";
@@ -1696,34 +1078,5 @@ zIndex.addEventListener("click", () => {
     indexLabels.appendChild(drinkLabel);
     drinkLabel.innerText = label.title;
   });
-  const indexLabelsList = document.querySelectorAll(".index-labels li");
-  indexLabelsList.forEach((label) => {
-    label.addEventListener("click", () => {
-      homePage.style.display = "none";
-      indexList.style.display = "none";
-      drinkCard.style.display = "flex";
-      ingredientButtonContainer.style.display = "";
-      ingredientsContainer.style.display = "";
-      description.style.display = "";
-      deleteCloseButton.style.display = "none";
-      edit.style.display = "block";
-      deleteButton.style.display = "block";
-
-      allCocktails.forEach((index) => {
-        if (label.innerText === index.title && index.favorite === false) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "block";
-          deleteFavButton.style.display = "none";
-        } else if (label.innerText === index.title && index.favorite === true) {
-          title.value = index.title;
-          ingredients.value = index.ingredients;
-          description.value = index.description;
-          addFavButton.style.display = "none";
-          deleteFavButton.style.display = "block";
-        }
-      });
-    });
-  });
+  displayDrinkInfo();
 });

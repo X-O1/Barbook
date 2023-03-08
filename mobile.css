@@ -306,21 +306,6 @@ a {
     margin-bottom: 0px;
 }
 
-.ingredient-button-container {
-    margin-left: 40px;
-    margin-top: 0px;
-    padding: 0px;
-    display: block;
-}
-
-#addIngredientButton,
-#deleteIngredientButton {
-    background: none;
-    color: #0d0d0d;
-    border: none;
-    font-size: 20px;
-}
-
 .drink-description textarea {
     width: 100%;
     resize: none;
