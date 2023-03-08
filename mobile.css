@@ -198,7 +198,7 @@ a {
 /* SURPRISE ME */
 .surprise-me-container {
     width: 270px;
-    margin: auto auto 30px auto;
+    margin: auto auto -30px auto;
     height: 100px;
     border-radius: 20px;
     text-align: center;
@@ -207,7 +207,7 @@ a {
 
 .random-drink {
     color: #0d0d0d;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     width: 100%;

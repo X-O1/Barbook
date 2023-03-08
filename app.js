@@ -47,6 +47,7 @@ const buildTabLinks = document.querySelectorAll(".link");
 const buildCocktailLink = document.querySelector(".build-cocktail-link");
 const toolsTab = document.getElementById("toolsTab");
 const navigationContainer = document.getElementById("navigationContainer");
+const surpriseMeContainer = document.querySelector(".surprise-me-container");
 const randomDrink = document.querySelector(".random-drink");
 const surpriseMeButton = document.querySelector(".surprise-me-button");
 const rolodexTitle = document.querySelector(".rolodex-title");
@@ -160,6 +161,8 @@ buildTab.addEventListener("click", () => {
   toolsTab.style.transform = "translateX(-80%)";
   randomDrink.innerText = "";
   rolodexTitle.innerHTML = "Build";
+  randomDrink.style.display = "none";
+  surpriseMeContainer.style.margin = "auto auto -30px auto";
 });
 closeBuildMenu.addEventListener("click", () => {
   buildTabLinks.forEach((link) => {
@@ -173,6 +176,8 @@ closeBuildMenu.addEventListener("click", () => {
   indexList.style.display = "none";
   drinkCard.style.display = "none";
   rolodexTitle.innerHTML = "Home";
+  randomDrink.style.display = "none";
+  surpriseMeContainer.style.margin = "auto auto -30px auto";
 });
 closeRolodexMenu.addEventListener("click", () => {
   indexCard.forEach((card) => {
@@ -191,29 +196,79 @@ closeRolodexMenu.addEventListener("click", () => {
   indexList.style.display = "none";
   drinkCard.style.display = "none";
   rolodexTitle.innerHTML = "Home";
+  randomDrink.style.display = "none";
+  surpriseMeContainer.style.margin = "auto auto -30px auto";
 });
 //SURPRISE ME
 surpriseMeButton.addEventListener("click", () => {
   const randomNumber = Math.floor(Math.random() * allCocktails.length);
+  surpriseMeContainer.style.margin = "auto auto 40px auto";
+  randomDrink.style.display = "flex";
   randomDrink.innerText = allCocktails[randomNumber].title;
 });
 randomDrink.addEventListener("click", () => {
   drinkCard.style.display = "flex";
-  allCocktails.forEach((drink) => {
-    if (randomDrink.innerHTML === drink.title && drink.favorite === false) {
-      title.value = drink.title;
-      description.value = drink.description;
+
+  allCocktails.forEach((index) => {
+    if (randomDrink.innerHTML === index.title && index.favorite === false) {
+      title.value = index.title;
+      ingredient1Input.value = index.ingredient1;
+      ingredient2Input.value = index.ingredient2;
+      ingredient3Input.value = index.ingredient3;
+      ingredient4Input.value = index.ingredient4;
+      ingredient5Input.value = index.ingredient5;
+      ingredient6Input.value = index.ingredient6;
+      ingredient7Input.value = index.ingredient7;
+      ingredient8Input.value = index.ingredient8;
+      description.value = index.description;
       addFavButton.style.display = "block";
       deleteFavButton.style.display = "none";
     } else if (
-      randomDrink.innerHTML === drink.title &&
-      drink.favorite === true
+      randomDrink.innerHTML === index.title &&
+      index.favorite === true
     ) {
-      title.value = drink.title;
-      description.value = drink.description;
+      title.value = index.title;
+      ingredient1Input.value = index.ingredient1;
+      ingredient2Input.value = index.ingredient2;
+      ingredient3Input.value = index.ingredient3;
+      ingredient4Input.value = index.ingredient4;
+      ingredient5Input.value = index.ingredient5;
+      ingredient6Input.value = index.ingredient6;
+      ingredient7Input.value = index.ingredient7;
+      ingredient8Input.value = index.ingredient8;
+      description.value = index.description;
       addFavButton.style.display = "none";
       deleteFavButton.style.display = "block";
     }
+
+    allCocktails.forEach((drink) => {
+      if (title.value === drink.title) {
+        drink.ingredient1 === ""
+          ? (ingredient1.style.display = "none")
+          : (ingredient1.style.display = "list-item");
+        drink.ingredient2 === ""
+          ? (ingredient2.style.display = "none")
+          : (ingredient2.style.display = "list-item");
+        drink.ingredient3 === ""
+          ? (ingredient3.style.display = "none")
+          : (ingredient3.style.display = "list-item");
+        drink.ingredient4 === ""
+          ? (ingredient4.style.display = "none")
+          : (ingredient4.style.display = "list-item");
+        drink.ingredient5 === ""
+          ? (ingredient5.style.display = "none")
+          : (ingredient5.style.display = "list-item");
+        drink.ingredient6 === ""
+          ? (ingredient6.style.display = "none")
+          : (ingredient6.style.display = "list-item");
+        drink.ingredient7 === ""
+          ? (ingredient7.style.display = "none")
+          : (ingredient7.style.display = "list-item");
+        drink.ingredient8 === ""
+          ? (ingredient8.style.display = "none")
+          : (ingredient8.style.display = "list-item");
+      }
+    });
   });
   navigationContainer.style.transform = "translateX(-50%)";
   closeRolodexMenu.style.transform = "translateY(100%)";
