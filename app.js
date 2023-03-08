@@ -292,8 +292,12 @@ const addCocktail = () => {
     ingredient7: document.querySelector(".ingredient-7 input").value,
     ingredient8: document.querySelector(".ingredient-8 input").value,
     description: document.querySelector(".drink-description textarea").value,
-    favorite: false,
   };
+
+  addFavButton.style.display === "block"
+    ? (cocktail.favorite = false)
+    : (cocktail.favorite = true);
+
   if (title.value != "" || description.value != "") {
     allCocktails.push(cocktail);
     localStorage.setItem("cocktails", JSON.stringify(allCocktails));
@@ -488,8 +492,12 @@ const createDrinkDisplay = () => {
 edit.addEventListener("click", () => {
   add.style.display = "none";
   edit.style.display = "none";
-  addFavButton.style.display = "none";
-  deleteFavButton.style.display = "none";
+  addFavButton.style.display === "block"
+    ? (addFavButton.style.display = "block")
+    : (addFavButton.style.display = "none");
+  deleteFavButton.style.display === "block"
+    ? (deleteFavButton.style.display = "block")
+    : (deleteFavButton.style.display = "none");
   done.style.display = "block";
   deleteButton.style.display = "block";
   deleteButton.style.display = "none";
@@ -532,6 +540,7 @@ edit.addEventListener("click", () => {
     }
   }
 });
+
 done.addEventListener("click", () => {
   addCocktail();
 
@@ -539,7 +548,12 @@ done.addEventListener("click", () => {
   deleteButton.style.display = "block";
   edit.style.display = "block";
   add.style.display = "block";
-  addFavButton.style.display = "block";
+  addFavButton.style.display === "block"
+    ? (addFavButton.style.display = "block")
+    : (addFavButton.style.display = "none");
+  deleteFavButton.style.display === "block"
+    ? (deleteFavButton.style.display = "block")
+    : (deleteFavButton.style.display = "none");
   closeRolodexMenu.style.transform = "translateY(100%)";
   closeBuildMenu.style.transform = "translateY(310%)";
   navigationContainer.style.transform = "translateX(-50%)";
@@ -723,9 +737,7 @@ buildCocktailLink.addEventListener("click", () => {
 
   createDrinkDisplay();
 });
-
-//LETTER INDEX EVENT LISTENERS
-
+//HANDLES DISPLAYING THE CORRECT INFO WHEN VIEWING A DRINK CARD
 const displayDrinkInfo = () => {
   const indexLabelsList = document.querySelectorAll(".index-labels li");
   indexLabelsList.forEach((label) => {
