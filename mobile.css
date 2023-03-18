@@ -13,7 +13,6 @@ body {
 
 h1 {
     font-family: 'pacifico', cursive;
-
 }
 
 a {
@@ -248,8 +247,6 @@ a {
 
 .surprise-me-button:hover {
     background-position: right center;
-    /* change the direction of the change here */
-    /* color: #725F52; */
     text-decoration: none;
 }
 
@@ -503,7 +500,6 @@ a {
 
 .index-labels {
     width: 100%;
-    /* height: 100%; */
     list-style: circle;
     margin: auto;
     padding: 0px;
